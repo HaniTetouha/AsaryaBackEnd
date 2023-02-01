@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace AsaryaBackEnd.Repo.GenericRepository
+namespace AsaryaBackEnd.Repo.GenericRepository.Interface
 {
     public interface IRepositoryBase<T>
     {

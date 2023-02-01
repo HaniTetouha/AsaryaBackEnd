@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Filters\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.2" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.2.1" />
   </ItemGroup>
 

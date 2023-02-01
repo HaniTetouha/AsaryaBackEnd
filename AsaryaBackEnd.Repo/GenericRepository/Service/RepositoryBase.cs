@@ -1,4 +1,5 @@
 ﻿using AsaryaBackEnd.Repo.Data;
+using AsaryaBackEnd.Repo.GenericRepository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

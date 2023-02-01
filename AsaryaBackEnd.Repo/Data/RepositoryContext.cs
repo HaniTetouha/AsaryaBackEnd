@@ -1,9 +1,10 @@
 ﻿using AsaryaBackEnd.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace AsaryaBackEnd.Repo.Data
 {
-    public class RepositoryContext : DbContext
+    public class RepositoryContext : IdentityDbContext<User>
     {
         public RepositoryContext(DbContextOptions options) : base(options)
         {
@@ -14,6 +15,7 @@ namespace AsaryaBackEnd.Repo.Data
             modelBuilder.ApplyConfiguration(new ItemData());
             modelBuilder.ApplyConfiguration(new CustomerData());
             modelBuilder.ApplyConfiguration(new SupplierData());
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<PurchaseInvoice>()
                 .Property(e => e.Status)
@@ -26,6 +28,88 @@ namespace AsaryaBackEnd.Repo.Data
                .HasConversion(
                p => p.ToString(),
                p => (InvoiceStatus)Enum.Parse(typeof(InvoiceStatus), p));
+
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.OwnsOne(o => o.Person)
+                 .Property(p => p.FirstName)
+                 .HasColumnName("FirstName")
+                 .HasColumnType("VARCHAR(250)")
+                 .IsRequired();
+
+                entity.OwnsOne(o => o.Person)
+                 .Property(p => p.LastName)
+                 .HasColumnName("LastName")
+                 .HasColumnType("VARCHAR(250)")
+                 .IsRequired();
+
+                entity.OwnsOne(o => o.Address)
+                .Property(p => p.Street)
+                .HasColumnName("Street")
+                .HasColumnType("VARCHAR(250)");
+
+                entity.OwnsOne(o => o.Address)
+                .Property(p => p.City)
+                .HasColumnName("City")
+                .HasColumnType("VARCHAR(250)");
+
+                entity.OwnsOne(o => o.Contact)
+                .Property(p => p.Email)
+                .HasColumnName("Email")
+                .HasColumnType("VARCHAR(250)");
+
+                entity.OwnsOne(o => o.Contact)
+                .Property(p => p.PhoneNumber)
+                .HasColumnName("PhoneNumber")
+                .HasColumnType("VARCHAR(250)");
+
+                entity.OwnsOne(o => o.Contact)
+                .Property(p => p.HomeNumber)
+                .HasColumnName("HomeNumber")
+                .HasColumnType("VARCHAR(250)");
+
+            });
+
+            modelBuilder.Entity<Supplier>(entity =>
+            {
+                entity.OwnsOne(o => o.Person)
+                 .Property(p => p.FirstName)
+                 .HasColumnName("FirstName")
+                 .HasColumnType("VARCHAR(250)")
+                 .IsRequired();
+
+                entity.OwnsOne(o => o.Person)
+                 .Property(p => p.LastName)
+                 .HasColumnName("LastName")
+                 .HasColumnType("VARCHAR(250)")
+                 .IsRequired();
+
+                entity.OwnsOne(o => o.Address)
+                .Property(p => p.Street)
+                .HasColumnName("Street")
+                .HasColumnType("VARCHAR(250)");
+
+                entity.OwnsOne(o => o.Address)
+                .Property(p => p.City)
+                .HasColumnName("City")
+                .HasColumnType("VARCHAR(250)");
+
+                entity.OwnsOne(o => o.Contact)
+                .Property(p => p.Email)
+                .HasColumnName("Email")
+                .HasColumnType("VARCHAR(250)");
+
+                entity.OwnsOne(o => o.Contact)
+                .Property(p => p.PhoneNumber)
+                .HasColumnName("PhoneNumber")
+                .HasColumnType("VARCHAR(250)");
+
+                entity.OwnsOne(o => o.Contact)
+                .Property(p => p.HomeNumber)
+                .HasColumnName("HomeNumber")
+                .HasColumnType("VARCHAR(250)");
+
+            });
         }
 
         public DbSet<Item> Items { get; set; }

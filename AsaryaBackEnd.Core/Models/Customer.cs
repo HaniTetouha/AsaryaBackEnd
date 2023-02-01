@@ -4,6 +4,9 @@ namespace AsaryaBackEnd.Core.Models
 {
     public class Customer
     {
+        private Customer()
+        {
+        }
         public Customer(Person person)
         {
             Person = person;
@@ -19,7 +22,7 @@ namespace AsaryaBackEnd.Core.Models
             Contact = contact;
         }
 
-        public long Id { get; set; }
+        public int Id { get; set; }
         public Person Person { get; private set; }
         public Address? Address { get; private set; }
         public Contact? Contact { get; private set; }

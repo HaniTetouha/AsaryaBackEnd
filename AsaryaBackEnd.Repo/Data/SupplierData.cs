@@ -10,13 +10,13 @@ namespace AsaryaBackEnd.Repo.Data
         public void Configure(EntityTypeBuilder<Supplier> builder)
         {
             builder.HasData(
-                new Supplier(
-                    new Person("local", "Supplier"),
-                    new Address("seyaheyya", "Tripoli"))
+                new
                 {
-                    Id = 1,
+                    Id = 1
                 });
+            builder.OwnsOne(p => p.Person).HasData(new { FirstName = "Local", LastName = "Supplier", SupplierId = 1 });
+            builder.OwnsOne(p => p.Address).HasData(new { Street = "gergarsh", City = "Tripoli", SupplierId = 1 });
+
         }
-    {
     }
 }
