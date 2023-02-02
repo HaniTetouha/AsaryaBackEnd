@@ -19,7 +19,7 @@ namespace AsaryaBackEnd.Controllers
 
         // GET: api/<PurchaseInvoiceController>
         [HttpGet]
-        public async Task<IActionResult> GetInvoices()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
@@ -28,25 +28,33 @@ namespace AsaryaBackEnd.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong in the {nameof(GetInvoices)} action {ex}");
+                _logger.LogError($"Something went wrong in the {nameof(GetAll)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
         }
 
         // GET api/<PurchaseInvoiceController>/5
         [HttpGet("{id}", Name = "PurchaseInvoiceById")]
-        public async Task<IActionResult> GetInvoice(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var salesInvoice = await _repository.PurchaseInvoice.GetById(id, trackChanges: false);
-            if (salesInvoice is null)
+            try
             {
-                _logger.LogInfo($"Purchase Invoice with id: {id} doesn't exist in the database.");
-                return NotFound();
+                var salesInvoice = await _repository.PurchaseInvoice.GetById(id, trackChanges: false);
+                if (salesInvoice is null)
+                {
+                    _logger.LogInfo($"Purchase Invoice with id: {id} doesn't exist in the database.");
+                    return NotFound();
+                }
+                else
+                {
+                    var salesInvoiceDto = _mapper.Map<PurchaseInvoiceDto>(salesInvoice);
+                    return Ok(salesInvoiceDto);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var salesInvoiceDto = _mapper.Map<PurchaseInvoiceDto>(salesInvoice);
-                return Ok(salesInvoiceDto);
+                _logger.LogError($"Something went wrong in the {nameof(Get)} action {ex}");
+                return StatusCode(500, "Internal server error");
             }
         }
 
@@ -79,18 +87,26 @@ namespace AsaryaBackEnd.Controllers
         [HttpPut("{id}")]
         [Authorize]
         [ResponseCache(CacheProfileName = "30SecondsCaching")]
-        public async Task<IActionResult> UpdateInvoice(int id, [FromBody] PurchaseInvoiceDto salesInvoice)
+        public async Task<IActionResult> Update(int id, [FromBody] PurchaseInvoiceDto salesInvoice)
         {
-            var invoiceData = _mapper.Map<PurchaseInvoice>(salesInvoice);
+            try
+            {
+                var invoiceData = _mapper.Map<PurchaseInvoice>(salesInvoice);
 
-            await _repository.PurchaseInvoice.UpdateAsync(invoiceData);
+                await _repository.PurchaseInvoice.UpdateAsync(invoiceData);
 
-            if (invoiceData.Status == InvoiceStatus.Saved)
-                CommitInvoiceEntry(invoiceData);
+                if (invoiceData.Status == InvoiceStatus.Saved)
+                    CommitInvoiceEntry(invoiceData);
 
-            await _repository.SaveAsync();
-            var salesInvoiceDto = _mapper.Map<PurchaseInvoiceDto>(invoiceData);
-            return Ok(salesInvoiceDto);
+                await _repository.SaveAsync();
+                var salesInvoiceDto = _mapper.Map<PurchaseInvoiceDto>(invoiceData);
+                return Ok(salesInvoiceDto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(Update)} action {ex}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         // DELETE api/<PurchaseInvoiceController>/5
@@ -99,25 +115,33 @@ namespace AsaryaBackEnd.Controllers
         [ResponseCache(CacheProfileName = "30SecondsCaching")]
         public async Task<IActionResult> Delete(int id)
         {
-            var salesInvoice = await _repository.PurchaseInvoice.GetById(id, trackChanges: false);
-
-            if (salesInvoice is null)
+            try
             {
-                _logger.LogInfo($"Purchase Invoice with id: {id} doesn't exist in the database.");
-                return NotFound();
+                var salesInvoice = await _repository.PurchaseInvoice.GetById(id, trackChanges: false);
+
+                if (salesInvoice is null)
+                {
+                    _logger.LogInfo($"Purchase Invoice with id: {id} doesn't exist in the database.");
+                    return NotFound();
+                }
+
+                if (salesInvoice.Status == InvoiceStatus.Saved)
+                    CommitInvoiceEntry(salesInvoice, false);
+
+                salesInvoice.Status = InvoiceStatus.Canceled;
+
+                await _repository.PurchaseInvoice.UpdateAsync(salesInvoice);
+
+                await _repository.SaveAsync();
+
+                var salesInvoiceDto = _mapper.Map<PurchaseInvoiceDto>(salesInvoice);
+                return Ok(salesInvoiceDto);
             }
-
-            if (salesInvoice.Status == InvoiceStatus.Saved)
-                CommitInvoiceEntry(salesInvoice, false);
-
-            salesInvoice.Status = InvoiceStatus.Canceled;
-
-            await _repository.PurchaseInvoice.UpdateAsync(salesInvoice);
-
-            await _repository.SaveAsync();
-
-            var salesInvoiceDto = _mapper.Map<PurchaseInvoiceDto>(salesInvoice);
-            return Ok(salesInvoiceDto);
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(Delete)} action {ex}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         protected void CommitInvoiceEntry(PurchaseInvoice entity, bool add = true)
