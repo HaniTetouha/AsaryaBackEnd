@@ -22,5 +22,8 @@ namespace AsaryaBackEnd.Repo.GenericRepository.Service
 
         public async Task UpdateAsync(T entity) => await Task.Run(() => RepositoryContext.Set<T>().Update(entity));
         public async Task RemoveAsync(T entity) => await Task.Run(() => RepositoryContext.Set<T>().Remove(entity));
+
+        //public async Task<T?> GetById(int Id, bool trackChanges)
+        //=> await FindByConditionAsync(c => c.Id.Equals(Id), trackChanges).Result.SingleOrDefaultAsync();
     }
 }

@@ -9,5 +9,7 @@ namespace AsaryaBackEnd.Repo.GenericRepository.Interface
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);
         Task RemoveAsync(T entity);
+        //Task<T?> GetById(int Id, bool trackChanges);
+
     }
 }

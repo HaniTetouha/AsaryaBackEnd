@@ -1,5 +1,4 @@
 ﻿using AsaryaBackEnd.Core.Models;
-using AsaryaBackEnd.Core.Models.Value;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

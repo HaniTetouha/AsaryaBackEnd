@@ -34,6 +34,8 @@ namespace AsaryaBackEnd.Extensions
             var mapperConfig = new MapperConfiguration(map =>
             {
                 map.AddProfile<UserMappingProfile>();
+                map.AddProfile<SalesInvoiceMapping>();
+                map.AddProfile<PurchaseInvoiceMapping>();
             });
             services.AddSingleton(mapperConfig.CreateMapper());
         }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AsaryaBackEnd.Repo.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20230201102731_Initial")]
+    [Migration("20230202134842_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -141,9 +141,8 @@ namespace AsaryaBackEnd.Repo.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Quantity")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -208,9 +207,8 @@ namespace AsaryaBackEnd.Repo.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Quantity")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

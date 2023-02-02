@@ -1,6 +1,5 @@
 ﻿using AsaryaBackEnd.Service.Interfaces;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AsaryaBackEnd.Controllers
@@ -9,7 +8,7 @@ namespace AsaryaBackEnd.Controllers
     [Route("api/items")]
     public class ItemsController : BaseApiController
     {
-        public ItemsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper) 
+        public ItemsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
             : base(repository, logger, mapper)
         {
         }

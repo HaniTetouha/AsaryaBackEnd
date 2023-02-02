@@ -4,7 +4,7 @@ namespace AsaryaBackEnd.Core.Models
 {
     public class Customer
     {
-        private Customer()
+        public Customer()
         {
         }
         public Customer(Person person)

@@ -273,7 +273,7 @@ namespace AsaryaBackEnd.Repo.Migrations
                     InvoiceId = table.Column<int>(type: "int", nullable: false),
                     ItemId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -301,7 +301,7 @@ namespace AsaryaBackEnd.Repo.Migrations
                     InvoiceId = table.Column<int>(type: "int", nullable: false),
                     ItemId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

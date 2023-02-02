@@ -9,7 +9,7 @@ namespace AsaryaBackEnd.Core.Models
         public int InvoiceId { get; set; }
         public int ItemId { get; set; }
         public decimal Price { get; set; }
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [ForeignKey(nameof(InvoiceId))]
         [InverseProperty(nameof(SalesInvoice.SalesInvoiceEntry))]

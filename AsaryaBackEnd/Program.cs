@@ -1,7 +1,6 @@
 ﻿using AsaryaBackEnd.Extensions;
 using AsaryaBackEnd.Service.Services;
 using NLog;
-using AsaryaBackEnd.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
@@ -42,12 +41,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseResponseCaching();
+app.UseStatusCodePages();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapSalesInvoiceEndpoints();
 
 app.Run();

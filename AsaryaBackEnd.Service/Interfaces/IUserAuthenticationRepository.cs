@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AsaryaBackEnd.Core.DTOs;
+﻿using AsaryaBackEnd.Core.DTOs;
 using Microsoft.AspNetCore.Identity;
 
 namespace AsaryaBackEnd.Service.Interfaces

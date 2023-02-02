@@ -2,11 +2,7 @@
 using AsaryaBackEnd.Repo.Data;
 using AsaryaBackEnd.Repo.GenericRepository.Service;
 using AsaryaBackEnd.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace AsaryaBackEnd.Service.Services
 {
@@ -15,5 +11,8 @@ namespace AsaryaBackEnd.Service.Services
         public ItemRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
         }
+
+        public async Task<Item?> GetById(int Id, bool trackChanges) 
+            => await FindByConditionAsync(c => c.Id.Equals(Id), trackChanges).Result.SingleOrDefaultAsync();
     }
 }
