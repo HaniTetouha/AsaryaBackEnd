@@ -3,7 +3,6 @@ using AsaryaBackEnd.Core.Models;
 using AsaryaBackEnd.Service.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AsaryaBackEnd.Controllers

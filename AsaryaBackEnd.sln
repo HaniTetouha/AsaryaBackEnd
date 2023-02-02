@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsaryaBackEnd.Repo", "Asary
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsaryaBackEnd.Service", "AsaryaBackEnd.Service\AsaryaBackEnd.Service.csproj", "{E605202C-3436-4915-8882-730CCF65DB06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsaryaBackEnd.UnitTest", "AsaryaBackEnd.UnitTest\AsaryaBackEnd.UnitTest.csproj", "{E42740BE-C5BA-4E6E-8253-13CBF2972AEE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{E605202C-3436-4915-8882-730CCF65DB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E605202C-3436-4915-8882-730CCF65DB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E605202C-3436-4915-8882-730CCF65DB06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E42740BE-C5BA-4E6E-8253-13CBF2972AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E42740BE-C5BA-4E6E-8253-13CBF2972AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E42740BE-C5BA-4E6E-8253-13CBF2972AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E42740BE-C5BA-4E6E-8253-13CBF2972AEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

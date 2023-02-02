@@ -12,7 +12,7 @@ namespace AsaryaBackEnd.Service.Services
         {
         }
 
-        public async Task<Item?> GetById(int Id, bool trackChanges) 
+        public async Task<Item?> GetById(int Id, bool trackChanges)
             => await FindByConditionAsync(c => c.Id.Equals(Id), trackChanges).Result.SingleOrDefaultAsync();
     }
 }
