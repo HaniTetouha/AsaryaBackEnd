@@ -1,4 +1,5 @@
 ﻿using AsaryaBackEnd.Core.Models;
+using AsaryaBackEnd.Core.Models.Value;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,12 @@ namespace AsaryaBackEnd.Repo.Data
                .HasConversion(
                p => p.ToString(),
                p => (InvoiceStatus)Enum.Parse(typeof(InvoiceStatus), p));
+
+            modelBuilder.Entity<StockTransaction>()
+                .Property(e => e.Type)
+                .HasConversion(
+                p => p.ToString(),
+                p => (StockTransactionType)Enum.Parse(typeof(StockTransactionType), p));
 
             modelBuilder.Entity<Customer>(entity =>
             {
@@ -119,6 +126,7 @@ namespace AsaryaBackEnd.Repo.Data
         public DbSet<SalesInvoiceEntry> SalesInvoiceEntries { get; set; }
         public DbSet<PurchaseInvoice> PurchaseInvoices { get; set; }
         public DbSet<PurchaseInvoiceEntry> PurchaseInvoiceEntries { get; set; }
+        public DbSet<StockTransaction> StockTransactions { get; set; }
 
     }
 }

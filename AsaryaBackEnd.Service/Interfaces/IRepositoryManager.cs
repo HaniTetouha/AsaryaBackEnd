@@ -6,6 +6,7 @@
         ISalesInvoiceRepository SalesInvoice { get; }
         IPurchaseInvoiceRepository PurchaseInvoice { get; }
         IUserAuthenticationRepository UserAuthentication { get; }
+        IStockTransactionRepository StockTransactionRepository { get; }
         Task SaveAsync();
     }
 }

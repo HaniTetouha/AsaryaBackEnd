@@ -36,6 +36,7 @@ namespace AsaryaBackEnd.Extensions
                 map.AddProfile<UserMappingProfile>();
                 map.AddProfile<ItemMappingProfile>();
                 map.AddProfile<SalesInvoiceMapping>();
+                map.AddProfile<StockTransactionMapping>();
                 map.AddProfile<PurchaseInvoiceMapping>();
             });
             services.AddSingleton(mapperConfig.CreateMapper());

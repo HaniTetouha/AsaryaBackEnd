@@ -26,4 +26,13 @@
     <ProjectReference Include="..\AsaryaBackEnd.Service\AsaryaBackEnd.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DB\asarya-backend.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DB\asarya-backend_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

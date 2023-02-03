@@ -17,6 +17,7 @@ namespace AsaryaBackEnd.Service.Services
         private IPurchaseInvoiceRepository _purchaseInvoiceRepository;
         private ISalesInvoiceRepository _salesInvoiceRepository;
         private IItemRepository _itemRepository;
+        private IStockTransactionRepository _stockTransactionRepository;
         private UserManager<User> _userManager;
 
         public RepositoryManager(RepositoryContext repositoryContext, UserManager<User> userManager, IMapper mapper, IConfiguration configuration)
@@ -56,6 +57,14 @@ namespace AsaryaBackEnd.Service.Services
             get
             {
                 return _purchaseInvoiceRepository ??= new PurchaseInvoiceRepository(_repositoryContext);
+            }
+        }
+
+        public IStockTransactionRepository StockTransactionRepository
+        {
+            get
+            {
+                return _stockTransactionRepository ??= new StockTransactionRepository(_repositoryContext);
             }
         }
 
